@@ -90,25 +90,25 @@
             $user.html(html);
         });
 
-        $messageForm.submit(function(e){
+        $messageForm.submit(function (e) {
             e.preventDefault();
-            socket.emit('newMessage', $messageBox.val(), function(data){
+            socket.emit('newMessage', $messageBox.val(), function (data) {
                 $chat.append('<span class="error">' + data + "</span><br/>");
             });
             $messageBox.val('');
         });
 
-        socket.on('load old msgs', function(docs){
-            for(var i=docs.length-1; i >= 0; i--){
+        socket.on('load old msgs', function (docs) {
+            for (var i = docs.length - 1; i >= 0; i--) {
                 displayMsg(docs[i]);
             }
         });
 
-        socket.on('chat message', function(data){
+        socket.on('chat message', function (data) {
             displayMsg(data);
         });
 
-        function displayMsg(data){
+        function displayMsg(data) {
             $chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
         }
     });

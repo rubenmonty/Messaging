@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 mongoose.connect('mongodb://user:user@ds019678.mlab.com:19678/trial0295', function (err) {
     if (err) {
         console.log(err);
+        throw err;
     } else {
         console.log('Connected to mongodb!');
     }
